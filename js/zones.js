@@ -1,6 +1,5 @@
 
 function makeChart(zones) {
-
     var ZONECHART = document.getElementById("zoneGraph").getContext('2d');
     var zone1t = zones.map(function(d) {return d.zone1T;});
     var zone1rh = zones.map(function(d) {return d.zone1RH;});
@@ -103,6 +102,10 @@ function makeChart(zones) {
     var spacedZ2T =[];
     var spacedZ3T =[];
     var spacedZ4T =[];
+    var spacedZ1RH =[];
+    var spacedZ2RH =[];
+    var spacedZ3RH =[];
+    var spacedZ4RH =[];
     for (i = 0; i < newTime.length; i++) {
       //if index of timeLabel % 60 == 0, store that index of TimeLabel into new TimeLabel
       if (newTime.indexOf(newTime[i]) % timeDiv == 0) {
@@ -111,48 +114,69 @@ function makeChart(zones) {
         spacedZ2T.push(newZ2T[i]);
         spacedZ3T.push(newZ3T[i]);
         spacedZ4T.push(newZ4T[i]);
+        spacedZ1RH.push(newZ1RH[i]);
+        spacedZ2RH.push(newZ2RH[i]);
+        spacedZ3RH.push(newZ3RH[i]);
+        spacedZ4RH.push(newZ4RH[i]);
       }
     }
     console.log("DATA POINTS DISPLAYED = " + spacedTime.length);
     var options = {
         scales: {
             yAxes: [{
+              id: 'A',
+              type: 'linear',
+              position: 'left',
                 display: true,
                 ticks: {
                     suggestedMin: 68,    // minimum will be 0, unless there is a lower value.
                     steps: 10,   // minimum value will be 0.
                     stepValue: 1,
                     max: 78
-                }
-            }]
+                  }
+            },{
+              id: 'B',
+              type: 'linear',
+              position: 'right'}]
         }
     };
 
-    var dataSelect = null;
-    var labelSelect;
+    var dataSelectT = null;
+    var dataSelectRH = null;
+    var labelSelectT;
+    var labelSelectRH;
     //pass zoneSelect
     var zone = zoneSelection;
     console.log("ZONE SELECTION = " + zoneSelection);
     switch (zone) {
       case "zsu1":
-      dataSelect = spacedZ1T;
-      labelSelect = "ZSU 1 Temperature";
+      dataSelectT = spacedZ1T;
+      dataSelectRH =spacedZ1RH;
+      labelSelectT = "ZSU 1 Temperature";
+      labelSelectRH ="ZSU 1 RH%";
       break;
       case "zsu2":
-      dataSelect = spacedZ2T;
-      labelSelect = "ZSU 2 Temperature";
+      dataSelectT = spacedZ2T;
+      dataSelectRH =spacedZ2RH;
+      labelSelectT = "ZSU 2 Temperature";
+      labelSelectRH ="ZSU 2 RH%";
       break;
       case "zsu3":
-      dataSelect = spacedZ3T;
-      labelSelect = "ZSU 3 Temperature";
+      dataSelectT = spacedZ3T;
+      dataSelectRH =spacedZ3RH;
+      labelSelectT = "ZSU 3 Temperature";
+      labelSelectRH ="ZSU 3 RH%";
       break;
       case "zsu4":
-      dataSelect = spacedZ4T;
-      labelSelect = "ZSU 4 Temperature";
+      dataSelectT = spacedZ4T;
+      dataSelectRH =spacedZ4RH;
+      labelSelectT = "ZSU 4 Temperature";
+      labelSelectRH ="ZSU 4 RH%";
       break;
       default:
-      dataSelect = 0;
-      labelSelect = "Check your case structure";
+      dataSelectT = 0;
+      dataSelectRH = 5;
+      labelSelectT = "Check your case structure";
     }
     //pass zonePeriod
     var chart = new Chart(ZONECHART, {
@@ -162,11 +186,20 @@ function makeChart(zones) {
        labels: spacedTime,
        datasets: [
          {
-           label: labelSelect,
+           label: labelSelectT,
+           yAxisID: 'A',
            fill: false,
            borderColor: "#000",
            backgroundColor: "#FFF",
-           data: dataSelect
+           data: dataSelectT
+         },
+         {
+           label: labelSelectRH,
+           yAxisID: 'B',
+           fill: false,
+           borderColor: "#d030b6",
+           backgroundColor: "#000",
+           data: dataSelectRH
          }
        ]
 
@@ -183,6 +216,21 @@ let csv_data = 'https://gist.githubusercontent.com/breteldorado/6991ad3cc8f1e101
  d3.csv(csv_data)
    .then(makeChart);
 function updateChart() {
+  //remove canvas
+  var element = document.getElementById("zoneGraph");
+  element.parentNode.removeChild(element);
+  //create canvas
+  var newChart = document.createElement("CANVAS");
+  var parentE = document.getElementById("list") //originally chart-container
+  newChart.setAttribute("id", "zoneGraph");
+  newChart.width = 900;
+  newChart.height = 450;
+  parentE.style.width  = '900px';
+  parentE.style.height = '450px';
+  parentE.style.display = 'block';parentE.style.textAlign ="center";
+  newChart.style.display = 'block';newChart.style.textAlign ="center";
+  parentE.appendChild(newChart);
+
   d3.csv(csv_data) //local data is okay for deployment
     .then(makeChart);
 }

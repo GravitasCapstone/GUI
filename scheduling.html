@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="js/scheduling.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
@@ -55,13 +56,13 @@
 			</select>
 		</div>
 		<div id="add-schedule" class="add-schedule">
-			<div id="add_sch_00">
+			<div id="addSch_00">
 				<ul>
 					<li>
-						<p class="entry">Day</p>
-						<form id="form_00">
-							<div id="selectday_00" style="padding:10px">
-								<select id="selectDay" multiple="multiple">
+						<div id="day_00" style="padding:10px">
+							<p class="entry">Day</p>
+							<form id="form_00">
+								<select id="selectDay_00" multiple="multiple">
 									<option value="M">Monday</option>
 									<option value="T">Tuesday</option>
 									<option value="W">Wednesday</option>
@@ -70,55 +71,61 @@
 									<option value="Sat">Saturday</option>
 									<option value="Sun">Sunday</option>
 								</select>
-							</div>
+						</div>
 						</form>
 					</li>
 					<script type="text/javascript">
 						$(function() {
 
-							$('#selectDay').multiselect({
+							$('#selectDay_00').multiselect({
 								includeSelectAllOption: true
 							});
 						});
 					</script>
 					<li>
-						<p class="entry">Zones</p>
-						<form id="form2">
-							<div style="padding:10px">
-								<select id="selectZ" multiple="multiple">
-									<option value="Z1">Zone 1</option>
-									<option value="Z2">Zone 2</option>
-									<option value="Z3">Zone 3</option>
-									<option value="Z4">Zone 4</option>
-								</select>
-							</div>
-						</form>
+						<div id="zones_00">
+							<p class="entry">Zones</p>
+							<form id="form2">
+								<div style="padding:10px">
+									<select id="selectZ_00" multiple="multiple">
+										<option value="Z1">Zone 1</option>
+										<option value="Z2">Zone 2</option>
+										<option value="Z3">Zone 3</option>
+										<option value="Z4">Zone 4</option>
+									</select>
+								</div>
+							</form>
+						</div>
 					</li>
 					<script type="text/javascript">
 						$(function() {
 
-							$('#selectZ').multiselect({
+							$('#selectZ_00').multiselect({
 								includeSelectAllOption: true
 							});
 						});
 					</script>
 					<li>
-						<p class="entry">Start Time</p>
-						<form id="form3">
-							<div style="padding:10px">
-								<select id="startTime">
-								</select>
-							</div>
-						</form>
+						<div id="sTime_00">
+							<p class="entry">Start Time</p>
+							<form id="form3">
+								<div style="padding:10px">
+									<select id="startTime_00">
+									</select>
+								</div>
+							</form>
+						</div>
 					</li>
 					<li>
-						<p class="entry">End Time</p>
-						<form id="form4">
-							<div style="padding:10px">
-								<select id="endTime">
-								</select>
-							</div>
-						</form>
+						<div id="eTime_00">
+							<p class="entry">End Time</p>
+							<form id="form4">
+								<div style="padding:10px">
+									<select id="endTime_00">
+									</select>
+								</div>
+							</form>
+						</div>
 					</li>
 					<script type="text/javascript">
 						// adding options to start time
@@ -126,8 +133,8 @@
 						var times = []; // time array
 						var tt = 0; // start time
 						var ap = ['AM', 'PM']; // AM-PM
-						var startTime = document.getElementById('startTime');
-						var endTime = document.getElementById('endTime');
+						var startTime = document.getElementById('startTime_00');
+						var endTime = document.getElementById('endTime_00');
 
 						//loop to increment the time and push results in array
 						for (var i = 0; tt < 24 * 60; i++) {
@@ -146,28 +153,32 @@
 						}
 					</script>
 					<li>
-						<p class="entry">Low Setpoint</p>
-						<form id="form5">
-							<div style="padding:10px">
-								<select id="loSet">
-									<option value="default">None Selected</option>
-								</select>
-							</div>
-						</form>
+						<div id="loPoint_00">
+							<p class="entry">Low Setpoint</p>
+							<form id="form5">
+								<div style="padding:10px">
+									<select id="loSet_00">
+										<option value="default">None Selected</option>
+									</select>
+								</div>
+							</form>
+						</div>
 					</li>
 					<li>
-						<p class="entry">High Setpoint</p>
-						<form id="form6">
-							<div style="padding:10px">
-								<select id="hiSet">
-									<option value="default">None Selected</option>
-								</select>
-							</div>
+						<div id="hiPoint_00">
+							<p class="entry">High Setpoint</p>
+							<form id="form6">
+								<div style="padding:10px">
+									<select id="hiSet_00">
+										<option value="default">None Selected</option>
+									</select>
+								</div>
+						</div>
 						</form>
 					</li>
 					<script type="text/javascript">
-						var lowSet = document.getElementById('loSet');
-						var hiSet = document.getElementById('hiSet');
+						var lowSet = document.getElementById('loSet_00');
+						var hiSet = document.getElementById('hiSet_00');
 						for (var i = 50; i < 91; i++) {
 							let loS = document.createElement('option');
 							let hiS = document.createElement('option');
@@ -180,58 +191,28 @@
 						}
 					</script>
 					<li>
-						<input type="button" id="applyRule" value="Apply" />
+						<div class="applyRule">
+								<button id="applyRule" onclick="onApply()">Apply</button>
+						</div>
 					</li>
 				</ul>
-				<script type="text/javascript">
-					var current_id = 0;
-					$('#applyRule').click(function() {
-						//check if all fields are filled out
-						nextElement($('#add_sch_00'));
-					})
-					//to do..
-					//clone div
-						//change div id to name_0x + 1
-						 //change all elements' id to name_0x + 1
-					function nextElement(element) {
-						var newElement = element.clone();
-						var id = current_id + 1;
-						current_id = id;
-						if (id < 10) id = "0" + id;
-						newElement.attr("id", element.attr("id").split("_")[0] + "_" + id);
-						//Day
-						var day = $('form1', newElement).attr("id");
-						$('form1', newElement).attr("id", day.split("_")[0] + "_" + id);
-						newElement.appendTo($("#add-schedule"));
-						//zones
-						var zones = $('form2', newElement).attr("id");
-						$('form2', newElement).attr("id", zones.split("_")[0] + "_" + id);
-						newElement.appendTo($("#add-schedule"));
-						//start time
-						var sTime = $('form3', newElement).attr("id");
-						$('form3', newElement).attr("id", sTime.split("_")[0] + "_" + id);
-						newElement.appendTo($("#add-schedule"));
-						//end time
-						var eTime = $('form4', newElement).attr("id");
-						$('form4', newElement).attr("id", eTime.split("_")[0] + "_" + id);
-						newElement.appendTo($("#add-schedule"));
-						//low Setpoint
-						var loPoint = $('form4', newElement).attr("id");
-						$('form5', newElement).attr("id", loPoint.split("_")[0] + "_" + id);
-						newElement.appendTo($("#add-schedule"));
-						//high point
-						//var hiSet = ;
-						//apply
-						//var apply = ;
-						//var field = $('input', newElement).attr("id");
-						//$('input', newElement).attr("id", field.split("_")[0]+"_"+id );
-						//newElement.appendTo($("#add-schedule"));
-					}
-				</script>
 			</div>
 		</div>
 
 		<div class="remove-schedule">
+			<div class="table-container">
+				<table class="table"id="myTable">
+					<tr>
+						<td>Day(s)</td>
+						<td>Zone(s)</td>
+						<td>Start Time</td>
+						<td>End Time</td>
+						<td>Low Setpoint</td>
+						<td>High Setpoint</td>
+					</tr>
+				</table>
+
+			</div>
 
 		</div>
 	</div>
