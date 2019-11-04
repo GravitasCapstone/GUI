@@ -45,21 +45,24 @@
 			<h1>Scheduling</h1>
 		</section>
 	</div>
+	<div class="select-schedule">
+		<h2>Select Schedule: </h2>
+		<select class="selectSch" name="selectSch" id="selectSch">
+			<option value="default">Select Schedule</option>
+			<option value="SummerSch">Summer</option>
+			<option value="WinterSch">Winter</option>
+			<option value="VacSch">Vacation</option>
+		</select>
+	</div>
 	<div class="all-container">
-		<div class="select-schedule">
-			<h2>Select Schedule: </h2>
-			<select class="selectSch" name="selectSch" id="selectSch">
-				<option value="default">Select Schedule</option>
-				<option value="SummerSch">Summer</option>
-				<option value="WinterSch">Winter</option>
-				<option value="VacSch">Vacation</option>
-			</select>
+		<div class="add_text">
+			<h3>Add Schedule Rule</h4>
 		</div>
 		<div id="add-schedule" class="add-schedule">
 			<div id="addSch_00">
 				<ul>
 					<li>
-						<div id="day_00" style="padding:10px">
+						<div id="day_00" style="padding:0px">
 							<p class="entry">Day</p>
 							<form id="form_00">
 								<select id="selectDay_00" multiple="multiple">
@@ -86,7 +89,7 @@
 						<div id="zones_00">
 							<p class="entry">Zones</p>
 							<form id="form2">
-								<div style="padding:10px">
+								<div style="padding:0px">
 									<select id="selectZ_00" multiple="multiple">
 										<option value="Z1">Zone 1</option>
 										<option value="Z2">Zone 2</option>
@@ -191,7 +194,7 @@
 						}
 					</script>
 					<li>
-						<div class="applyRule">
+						<div class="align-self-center">
 								<button id="applyRule" onclick="onApply()">Apply</button>
 						</div>
 					</li>

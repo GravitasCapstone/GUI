@@ -8,6 +8,7 @@
     -ms-animation: fadein .5s; /* Internet Explorer */
      -o-animation: fadein .5s; /* Opera < 12.1 */
         animation: fadein .5s;
+        font-size: .9em;
 }
 @keyframes fadein {
     from { opacity: 0; }
@@ -53,6 +54,15 @@ ul {
 }
 nav ul {
 
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size:1.5em;
+}
+.btn {
+  font-size: 1em;
 }
 .container {
 	width:95%;
@@ -212,4 +222,42 @@ button{
 }
 .cooling-container ul select, .heating-container ul select{
   display: inline-block;
+}
+.select-schedule{
+  margin-bottom: 3em;
+  margin-left: 3em;
+}
+.add-schedule {
+  width:100%;
+  margin-right: auto;
+  text-align: left;
+  margin-left: 3em;
+}
+.all-container {
+  display: block;
+  text-align: center;
+}
+.remove-schedule {
+  width: 60%;
+  text-align: right;
+  margin-top: 10%;
+  margin-left:3em;
+}
+.dropdown-menu {
+  //display:none !important;
+}
+.add-schedule ul li{
+  text-align: center;
+  display: inline-flex;
+  justify-content: space-between;
+  //margin-right: 3em;
+  //margin-left: 3em;
+}
+.add_schedule ul li{
+}
+.applyRule button {
+  margin-top: 3em;
+}
+.multiselect-container dropdown-menu{
+  opacity:0%;
 }

@@ -192,10 +192,16 @@ function writeMyFile(data) {
   var dataString = dataArray.join("");
   console.log(dataString);
   //write data string to file
-  const fs = require('fs');
-  fs.writeFile('Output.txt', dataString, (err) => {
-    if (err) throw err;
-  });
+   var dataJSON = JSON.stringify(dataString);
+   var request = new XMLHttpRequest();
+   var dataURL = "setup.php?data=" + encodeURI(dataJSON);
+   request.open("GET", 'setup.php', true);
+   request.setRequestHeader('Ping-Other', 'pingpong');
+   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   request.send(dataURL);
+
+$.post( "setup.php", { data:dataString } );
+
 
   //write csv file
 }
