@@ -38,7 +38,11 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-
+.setup-container li{
+  font-size: 100%;
+  display:flex;
+  justify-content:center;
+}
 p {
 	font-size: 1.25em;
 	line-height: 1.6em;

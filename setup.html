@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>HVAC - Setup</title>
-	<link rel="stylesheet" href="css/main.css">
 	<script src="js/setup.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 	<div class="container">
@@ -43,36 +43,38 @@
       <h3>Zones</h3>
       <ul>
       <div class="z1-container">
-Zone 1
+				<li><p id="zone1" style="font-size:1em;">Zone 1</p>
         <select id="z1Select" name="z1Select">
           <option value="default">Required</option>
           <option value="1">Enabled</option>
           <option value="0">Disabled</option>
-        </select>
+        </select> </li?
       </div>
       <div class="z2-container">
-Zone 2
+				<li><p id="zone2" style="font-size:1em;">Zone 2</p>
         <select id="z2Select" name="z2Select">
           <option value="default">Required</option>
           <option value="1">Enabled</option>
           <option value="0">Disabled</option>
-        </select>
+        </select></li>
       </div>
       <div class="z3-container">
-Zone 3
+				<li><p id="zone3" style="font-size:1em;">Zone 3</p>
         <select id="z3Select" name="z3Select">
           <option value="default">Required</option>
           <option value="1">Enabled</option>
           <option value="0">Disabled</option>
         </select>
+			</li>
       </div>
       <div class="z4-container">
-Zone 4
+				<li><p id="zone4" style="font-size:1em;">Zone 4</p>
         <select name="z4Select" id="z4Select">
           <option value="default">Required</option>
           <option value="1">Enabled</option>
           <option value="0">Disabled</option>
         </select>
+			</li>
       </div>
       </ul>
     </div>
@@ -81,7 +83,7 @@ Zone 4
       <ul>
       <div class="d1-container">
         <ul>
-Damper 1
+					<li><p id="damper1" style="font-size:1em;">Damper 1</p>
 				<select class="d1Op" name="d1Op" id="d1Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -101,11 +103,12 @@ Damper 1
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d2-container">
         <ul>
-Damper 2
+					<li><p id="damper2" style="font-size:1em;">Damper 2</p>
 				<select class="d2Op" name="d2Op" id="d2Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -125,11 +128,12 @@ Damper 2
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d3-container">
         <ul>
-Damper 3
+					<li><p id="damper3" style="font-size:1em;">Damper 3</p>
 				<select class="d3Op" name="d3Op" id="d3Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -149,11 +153,12 @@ Damper 3
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d4-container">
         <ul>
-Damper 4
+					<li><p id="damper4" style="font-size:1em;">Damper 4</p>
 				<select class="d4Op" name="d4Op" id="d4Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -173,11 +178,12 @@ Damper 4
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d5-container">
         <ul>
-Damper 5
+					<li><p id="damper5" style="font-size:1em;">Damper 5</p>
 				<select class="d5Op" name="d5Op" id="d5Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -197,11 +203,12 @@ Damper 5
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d6-container">
         <ul>
-Damper 6
+					<li><p id="damper6" style="font-size:1em;">Damper 6</p>
 				<select class="d6Op" name="d6Op" id="d6Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -221,11 +228,12 @@ Damper 6
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d7-container">
         <ul>
-Damper 7
+					<li><p id="damper7" style="font-size:1em;">Damper 7</p>
 				<select class="d7Op" name="d7Op" id="d7Operation">
 					<option value="default">Operation</option>
 					<option value="0">Disabled</option>
@@ -245,11 +253,12 @@ Damper 7
           <option value="2">No Heat</option>
           <option value="3">No Cool</option>
         </select>
+			</li>
         </ul>
       </div>
       <div class="d8-container">
         <ul>
-Damper 8
+					<li><p id="damper8" style="font-size:1em;">Damper 8</p>
 					<select class="d8Op" name="d8Op" id="d8Operation">
 						<option value="default">Operation</option>
 						<option value="0">Disabled</option>
@@ -271,98 +280,108 @@ Damper 8
         </select>
         </ul>
       </div>
+		</li>
 
       </ul>
     </div>
     <div class="cooling-container">
       <h3>Cooling</h3>
       <ul>
-System
+				<li><p id="coolingSystemTXT" style="font-size:1em;">System</p>
       <select class="coolingSystem" name="coolingSystem" id="coolingSystem">
         <option value="default">Required</option>
         <option value="1">Single-Stage</option>
         <option value="2">Two-Stage</option>
         <option value="0">Disabled</option>
       </select>
+		</li>
     </ul>
     <ul>
-Anticipator
+			<li><p id="AnticipatorCTXT" style="font-size:1em;">Anticipator</p>
       <select class="AnticipatorC" name="AnticipatorC" id="anticipatorC">
         <option value="default">Required</option>
         <option value="1:00:00">1 hour</option>
         <option value="2:00:00">2 hour</option>
         <option value="3:00:00">3 hour</option>
       </select>
+		</li>
       </ul>
       <ul>
-Max Run Time
+				<li><p id="coolingRunTTXT" style="font-size:1em;">Max Run Time</p>
         <select class="coolingRunT" name="coolingRunT" id="coolingRunT">
           <option value="default">Required</option>
           <option value="00:00:15">15 Minute</option>
           <option value="00:00:30">30 Minutes</option>
           <option value="1:00:00">1 Hour</option>
         </select>
+			</li>
         </ul>
         <ul>
-Min Cycle Time
+					<li><p id="coolingCycleTTXT" style="font-size:1em;">Min. Cycle Time</p>
           <select class="coolingCycleT" name="coolingCycleT" id="coolingCycleT">
             <option value="default">Required</option>
             <option value="00:01:00">1 Minute</option>
             <option value="00:05:00">5 Minutes</option>
             <option value="00:10:00">10 Minutes</option>
           </select>
+				</li>
           </ul>
     </div>
     <div class="heating-container">
       <h3>Heating</h3>
       <ul>
-System
+				<li><p id="heatingSystemTXT" style="font-size:1em;">System</p>
       <select class="heatingSystem" name="heatingSystem" id="heatingSystem">
         <option value="default">Required</option>
         <option value="1">Single-Stage</option>
         <option value="2">Two-Stage</option>
         <option value="0">Disabled</option>
       </select>
+		</li>
     </ul>
     <ul>
-Anticipator
+			<li><p id="AnticipatorHTXT" style="font-size:1em;">Anticipator</p>
       <select class="AnticipatorH" name="AntipatorH" id="anticipatorH">
 				<option value="default">Required</option>
         <option value="1:00:00">1 hour</option>
         <option value="2:00:00">2 hour</option>
         <option value="3:00:00">3 hour</option>
       </select>
+		</li>
       </ul>
       <ul>
-Max Run Time
+				<li><p id="heatingRunTTXT" style="font-size:1em;">Maximum Run Time</p>
         <select class="heatingRunT" name="heatingRunT" id="heatingRunT">
 					<option value="default">Required</option>
           <option value="00:00:15">15 Minute</option>
           <option value="00:00:30">30 Minutes</option>
           <option value="1:00:00">1 Hour</option>
         </select>
+			</li>
         </ul>
         <ul>
-Min Cycle Time
+					<li><p id="heatingCycleTTXT" style="font-size:1em;">Minimum Cycle Time</p>
           <select class="heatingCycleT" name="heatingCycleT" id="heatingCycleT">
 						<option value="default">Required</option>
             <option value="00:01:00">1 Minute</option>
             <option value="00:05:00">5 Minutes</option>
             <option value="00:10:00">10 Minutes</option>
           </select>
+				</li>
         </ul>
         <ul>
-Over Temperature
+					<li><p id="overTempTXT" style="font-size:1em;">Over Temperature</p>
           <select class="overTemp" name="overTemp" id="overTemp">
             <option value="default">Required</option>
             <option value="5">+5 degrees</option>
             <option value="10">+10 degrees</option>
             <option value="15">+15 degrees</option>
           </select>
+				</li>
         </ul>
     </div>
 		<div class="button-container">
-			<button onclick="onSubmit()">Click me</button>
+			<button onclick="onSubmit()">Submit</button>
 		</div>
   </div>
 

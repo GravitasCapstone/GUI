@@ -109,7 +109,7 @@ function onSubmit() {
       errorCheck = 1;
     }
   }
-  //damperSetup.d1-d8.operation == "default"
+  //damperSetup[d1-d8].operation == "default"
   for (i = 0; i < data.damperSetup.length; i++) {
     if (data.damperSetup[i].operation == "default") {
       onError();
@@ -192,18 +192,8 @@ function writeMyFile(data) {
   var dataString = dataArray.join("");
   console.log(dataString);
   //write data string to file
-   var dataJSON = JSON.stringify(dataString);
-   var request = new XMLHttpRequest();
-   var dataURL = "setup.php?data=" + encodeURI(dataJSON);
-   request.open("GET", 'setup.php', true);
-   request.setRequestHeader('Ping-Other', 'pingpong');
-   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   request.send(dataURL);
+  $.post( "setup.php", { dataString } );
 
-$.post( "setup.php", { data:dataString } );
-
-
-  //write csv file
 }
 
 function onError() {
