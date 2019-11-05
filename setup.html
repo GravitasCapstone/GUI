@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>HVAC - Setup</title>
+	<link rel="stylesheet" href="css/main.css">
 	<script src="js/setup.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 	<div class="container">
@@ -38,7 +38,7 @@
 			<h1>Setup</h1>
 		</section>
 	</div>
-  <div class="setup-container">
+  <div class="setup-container" id="setupDiv" style="">
     <div class="zone-container">
       <h3>Zones</h3>
       <ul>
@@ -297,7 +297,7 @@
 		</li>
     </ul>
     <ul>
-			<li><p id="AnticipatorCTXT" style="font-size:1em;">Anticipator</p>
+			<li><p id="anticipatorCTXT" style="font-size:1em;">Anticipator</p>
       <select class="AnticipatorC" name="AnticipatorC" id="anticipatorC">
         <option value="default">Required</option>
         <option value="1:00:00">1 hour</option>
@@ -340,7 +340,7 @@
 		</li>
     </ul>
     <ul>
-			<li><p id="AnticipatorHTXT" style="font-size:1em;">Anticipator</p>
+			<li><p id="anticipatorHTXT" style="font-size:1em;">Anticipator</p>
       <select class="AnticipatorH" name="AntipatorH" id="anticipatorH">
 				<option value="default">Required</option>
         <option value="1:00:00">1 hour</option>
@@ -384,6 +384,9 @@
 			<button onclick="onSubmit()">Submit</button>
 		</div>
   </div>
+	<div class="confim-container" id="confirmCont" style= "border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
+		<h2 id="msgConfirm" style="display:none; line-height: .5em;">Smart HVAC System Configured!</h2>
+	</div>
 
   </body>
 </html>

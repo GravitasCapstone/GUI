@@ -1,4 +1,30 @@
+//check if setup.csv exists
+window.onload = function() {
+  $.ajax({
+      url:'setup.csv',
+      type:'HEAD',
+      error: function()
+      {
+          //file not exists
+          firstTime();
+      },
+      success: function()
+      {
+          //file exists
+          configureMsg();
+      }
+  });
+};
+function firstTime(){
+    setupDiv = document.getElementById("setupDiv");
+}
+
 function onSubmit() {
+  var txt = document.getElementsByTagName("p");
+  for (var i = 0; i < txt.length; i++) {
+    txt[i].style.fontWeight="400";
+    txt[i].style.color="black";
+  }
   //pull values
   var z1Select = document.getElementById('z1Select').value;
   var z2Select = document.getElementById('z2Select').value;
@@ -42,6 +68,7 @@ function onSubmit() {
   var heatingRunT = document.getElementById('heatingRunT').value;
   var heatingCycleT = document.getElementById('heatingCycleT').value;
   var overTemp = document.getElementById('overTemp').value;
+
 
   var errorCheck = 0; //1 = error
   var data = {
@@ -99,54 +126,50 @@ function onSubmit() {
       overTemp
     ]
   };
-  console.log(data);
   //if any default, display an error
   //zonesetup.z1,z2,z3,z4 == "default"
 
   for (var i = 0; i < data.zoneSetup.length; i++) {
     if (data.zoneSetup[i] == "default") {
-      onError();
+      onError(data, i+1);
       errorCheck = 1;
     }
   }
   //damperSetup[d1-d8].operation == "default"
   for (i = 0; i < data.damperSetup.length; i++) {
     if (data.damperSetup[i].operation == "default") {
-      onError();
+      onError(data, i+5);
       errorCheck = 1;
     } else if ((data.damperSetup[i].location == "default") && (data.damperSetup[i].operation != "disabled")) {
-      onError();
+      onError(data, i+5);
       errorCheck = 1;
     } else if ((data.damperSetup[i].optional == "default") && (data.damperSetup[i].operation != "disabled")) {
-      onError();
+      onError(data, i+5);
       errorCheck = 1;
     }
   }
   //cooling.system, anticipator, runT, CycleT == "default"
   for (i = 0; i < data.cooling.length; i++) {
     if (data.cooling[i] == "default") {
-      onError();
+      onError(data, i + 13);
       errorCheck = 1;
     }
   }
   //heating.system, anticipator, runT, CycleT == "default"
   for (i = 0; i < data.heating.length; i++) {
     if (data.heating[i] == "default") {
-      onError();
+      onError(data, i + 17);
       errorCheck = 1;
     }
   }
   // if no default values exist, write the file
   if (errorCheck == 0) {
-    console.log("I am about to enter the writefile function");
     writeMyFile(data);
   }
-  console.log("error check =  " + errorCheck);
 }
 
 
 function writeMyFile(data) {
-  console.log("I have made it to the function");
   let header = ["Parameter", "Config \n"];
   var parameter = ["zone1,", "zone2,", "zone3,", "zone4,", "d1Operation,", "d2Operation,",
     "d3Operation,", "d4Operation,", "d5Operation,", "d6Operation,", "d7Operation,",
@@ -190,13 +213,137 @@ function writeMyFile(data) {
     dataArray.push(config[i]);
   }
   var dataString = dataArray.join("");
-  console.log(dataString);
   //write data string to file
   $.post( "setup.php", { dataString } );
-
+  //HVAC Configured
+  configureMsg();
+}
+function configureMsg(){
+  //remove setup-container
+  setupDiv = document.getElementById("setupDiv");
+  setupDiv.style.display = "none";
+  //show success msg
+  msgConfirm = document.getElementById('msgConfirm');
+  msgConfirm.style.display ="flex";
+  msgConfirm.style.justifyContent ="center";
 }
 
-function onError() {
+function onError(data, errCode) {
+  var zone1 = document.getElementById("zone1");
+  var zone1 = document.getElementById("zone1");
+  var zone1 = document.getElementById("zone1");
+  var zone1 = document.getElementById("zone1");
+
+  var damper1 = document.getElementById("damper1");
+  var damper2 = document.getElementById("damper2");
+  var damper3 = document.getElementById("damper3");
+  var damper4 = document.getElementById("damper4");
+  var damper5 = document.getElementById("damper5");
+  var damper6 = document.getElementById("damper6");
+  var damper7 = document.getElementById("damper7");
+  var damper8 = document.getElementById("damper8");
+
+  var coolingSystemTXT = document.getElementById('coolingSystemTXT');
+  var anticipatorCTXT = document.getElementById('anticipatorCTXT');
+  var coolingRunTTXT = document.getElementById('coolingRunTTXT');
+  var coolingCycleTTXT = document.getElementById('coolingCycleTTXT');
+
+  var heatingSystemTXT = document.getElementById('heatingSystemTXT');
+  var anticipatorHTXT = document.getElementById('anticipatorHTXT');
+  var heatingRunTTXT = document.getElementById('heatingRunTTXT');
+  var heatingCycleTTXT = document.getElementById('heatingCycleTTXT');
+  var overTempTXT = document.getElementById('overTempTXT');
   //just change css font color values to red that are on default?
-  console.log("not everything is filled out!!!");
+  console.log("Error Code = " + errCode);
+  // errCode = 0; // 1-4 = zones
+  // 5-12 = dampers
+  // 13-16 = cooling section
+  // 17 - 21 = heating section
+  switch (errCode) {
+    case 1: //zones
+      zone1.style.color = "red"
+      zone1.style.fontWeight = "900";
+      break;
+    case 2:
+      zone2.style.color = "red"
+      zone2.style.fontWeight = "900";
+      break;
+    case 3:
+      zone3.style.color = "red"
+      zone3.style.fontWeight = "900";
+      break;
+    case 4:
+      zone4.style.color = "red"
+      zone4.style.fontWeight = "900";
+      break;
+    case 5:
+      damper1.style.color = "red"
+      damper1.style.fontWeight = "900";
+      break;
+    case 6:
+      damper2.style.color = "red"
+      damper2.style.fontWeight = "900";
+      break;
+    case 7:
+      damper3.style.color = "red"
+      damper3.style.fontWeight = "900";
+      break;
+    case 8:
+      damper4.style.color = "red"
+      damper4.style.fontWeight = "900";
+      break;
+    case 9:
+      damper5.style.color = "red"
+      damper5.style.fontWeight = "900";
+      break;
+    case 10:
+      damper6.style.color = "red"
+      damper6.style.fontWeight = "900";
+      break;
+    case 11:
+      damper7.style.color = "red"
+      damper7.style.fontWeight = "900";
+      break;
+    case 12:
+      damper8.style.color = "red"
+      damper8.style.fontWeight = "900";
+      break;
+    case 13: //cooling
+      coolingSystemTXT.style.color = "red";
+      coolingSystemTXT.style.fontWeight = "900";
+      break;
+    case 14: //cooling
+      anticipatorCTXT.style.color = "red";
+      anticipatorCTXT.style.fontWeight = "900";
+      break;
+    case 15: //cooling
+      coolingRunTTXT.style.color = "red";
+      coolingRunTTXT.style.fontWeight = "900";
+      break;
+    case 16: //cooling
+      coolingCycleTTXT.style.color = "red";
+      coolingCycleTTXT.style.fontWeight = "900";
+      break;
+    case 17: //heating
+      heatingSystemTXT.style.color = "red";
+      heatingSystemTXT.style.fontWeight = "900";
+      break;
+    case 18: //heating
+      anticipatorHTXT.style.color = "red";
+      anticipatorHTXT.style.fontWeight = "900";
+      break;
+    case 19: //heating
+      heatingRunTTXT.style.color = "red";
+      heatingRunTTXT.style.fontWeight = "900";
+      break;
+    case 20: //heating
+      heatingCycleTTXT.style.color = "red";
+      heatingCycleTTXT.style.fontWeight = "900";
+      break;
+    case 21: //heating
+      overTempTXT.style.color = "red";
+      overTempTXT.style.fontWeight = "900";
+      break;
+
+  }
 }
