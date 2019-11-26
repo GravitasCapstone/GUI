@@ -2,7 +2,7 @@
 window.onload = function() {
   $.ajax({
       url:'setup.csv',
-      type:'HEAD',
+      type:'GET',
       error: function()
       {
           //file not exists
@@ -214,7 +214,7 @@ function writeMyFile(data) {
   }
   var dataString = dataArray.join("");
   //write data string to file
-  $.post( "setup.php", { dataString } );
+  $.post( "setup.html", { dataString } );
   //HVAC Configured
   configureMsg();
 }

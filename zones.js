@@ -149,7 +149,6 @@ function makeChart(zones) {
       spacedZ4RH.push(newZ4RH[i]);
     }
   }
-  console.log("DATA POINTS DISPLAYED = " + spacedTime.length);
   var options = {
     scales: {
       yAxes: [{
@@ -158,8 +157,8 @@ function makeChart(zones) {
         position: 'left',
         display: true,
         ticks: {
-          suggestedMin: 68, // minimum will be 0, unless there is a lower value.
-          steps: 10, // minimum value will be 0.
+          suggestedMin: 68,
+          steps: 10,
           stepValue: 1,
           max: 78
         }
@@ -234,14 +233,13 @@ function makeChart(zones) {
 
     }
   });
-  console.log("CHART.DATASETS.LENGTH = " + chart.data.datasets.length);
-  console.log("CHART.DATASETS.DATA.LENGTH = " + chart.data.datasets[0].data.length);
+
   chart.reset();
   chart.update();
-  console.log("---------------------------------------------------");
 }
 
-let csv_data = 'https://gist.githubusercontent.com/breteldorado/6991ad3cc8f1e1014c386d4166158c70/raw/4b86e23ff7e394e42d6d2b5ddaba75a91f24c636/ZoneData.csv'
+//let csv_data = 'https://gist.githubusercontent.com/breteldorado/6991ad3cc8f1e1014c386d4166158c70/raw/4b86e23ff7e394e42d6d2b5ddaba75a91f24c636/ZoneData.csv'
+let csv_data = 'zoneData.csv';
 d3.csv(csv_data)
   .then(makeChart);
 
@@ -251,7 +249,7 @@ function updateChart() {
   element.parentNode.removeChild(element);
   //create canvas
   var newChart = document.createElement("CANVAS");
-  var parentE = document.getElementById("list") //originally chart-container
+  var parentE = document.getElementById("list")
   newChart.setAttribute("id", "zoneGraph");
   newChart.width = 900;
   newChart.height = 450;
@@ -263,7 +261,7 @@ function updateChart() {
   newChart.style.textAlign = "center";
   parentE.appendChild(newChart);
 
-  d3.csv(csv_data) //local data is okay for deployment
+  d3.csv(csv_data)
     .then(makeChart);
 }
 
