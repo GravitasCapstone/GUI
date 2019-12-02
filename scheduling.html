@@ -55,6 +55,9 @@
 			<option value="VacSch">Vacation</option>
 		</select>
 	</div>
+	<div id="error-container" style="display:none; justify-content:center; background:red;">
+		<h1 style="color: white; margin-top:10px;">There is a time conflict with this rule, please check your rules</h1>
+	</div>
 	<div class="all-container">
 		<div class="add_text">
 			<h3>Add Schedule Rule</h4>
@@ -103,7 +106,6 @@
 					</li>
 					<script type="text/javascript">
 						$(function() {
-
 							$('#selectZ_00').multiselect({
 								includeSelectAllOption: true
 							});
@@ -198,7 +200,7 @@
 					</script>
 					<li>
 						<div class="align-self-center">
-								<button id="applyRule" onclick="onApply()">Apply</button>
+							<button id="applyRule" onclick="onApply()">Apply</button>
 						</div>
 					</li>
 				</ul>
@@ -207,7 +209,7 @@
 
 		<div class="remove-schedule">
 			<div class="table-container">
-				<table class="table"id="myTable">
+				<table class="table" id="myTable">
 					<tr>
 						<td>Day(s)</td>
 						<td>Zone(s)</td>
@@ -220,6 +222,9 @@
 
 			</div>
 
+		</div>
+		<div class="submit-container" style="opacity:0;">
+			<button id="applyRule" onclick="onSubmit()">Submit</button>
 		</div>
 	</div>
 
