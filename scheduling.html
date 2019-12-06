@@ -217,15 +217,26 @@
 						<td>End Time</td>
 						<td>Low Setpoint</td>
 						<td>High Setpoint</td>
+						<td></td>
 					</tr>
 				</table>
 
 			</div>
 
 		</div>
-		<div class="submit-container" style="opacity:0;">
+		<div class="submit-container" style="opacity:1;">
 			<button id="applyRule" onclick="onSubmit()">Submit</button>
 		</div>
+	</div>
+	<div class="confim-container" id="confirmCont" style= "display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
+		<h2 id="writeSuccess" style="display:none; line-height: .5em;"></h2>
+	</div>
+	<div class="load-container" id="loadCont" style= "display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
+		<h2 id="loadText"></h2>
+	</div>
+	<div class="attempt-container" style="display:none;">
+		<h2>Saving file failed! Try again?</h2>
+		<button onclick="onSubmit()" id="tryAgain">Try Again</button>
 	</div>
 
 
