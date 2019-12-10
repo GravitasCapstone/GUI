@@ -4,42 +4,42 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Smart HVAC System</title>
-	<script src= "dist/jquery-csv.js"></script>
+	<script src= "./dist/jquery-2.2.0.min.js"></script>
 	<script src = status.js></script>
+	<script src="./dist/bootstrap.min.js"></script>
 	<style>
 		table{
 				border-collapse: collapse;
 				border: 2px black solid;
 		}
-
 		td {
 				border: 1px black solid;
 				padding: 5px;
 		}
+		body {
+			padding: 10px;
+			font-size: 12px;
+		}
+		.well {
+			padding-top: 0px;
+			padding-bottom: 0px;
+			width: 500px;
+		}
+		table {
+			font-size: 10px;
+			line-height: 10px;
+		}
+		td, th {
+			width: 33.3%;
+		}
+		label {
+			margin-bottom: 10px;
+		}
 </style>
 
 
-  <style>
-  body {
-    padding: 10px;
-    font-size: 12px;
-  }
-  .well {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    width: 500px;
-  }
-  table {
-    font-size: 10px;
-    line-height: 10px;
-  }
-  td, th {
-    width: 33.3%;
-  }
-  label {
-    margin-bottom: 10px;
-  }
 </style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -70,7 +70,7 @@
 				<tr><td>Fan:</td><td>fanstatus</td><td>hvacstatus</td></tr>
 			</table>
 		</div>
-		<div class="table" id="StatusGlance">
+		<div class="table" id="StatusGlance2">
 		<table>
 			<tr>
 				<td>Area</td>
@@ -81,44 +81,20 @@
 				<td>Status</td>
 				<td>Last Update</td>
 			</tr>
+			<td>DUNNO IF THIS WORKS</td>
 			<tr>
-				<td>Zone 1</td>
-				<td>~builddate~</td>
-				<td>~version~</td>
-				<td>~drive~</td>
-				<td>~fstype~</td>
-				<td>~hellomsg~</td>
-				<td>?</td>
 			</tr>
 			<tr>
-				<td>Zone 2</td>
-				<td>zoneLoPoint(2)</td>
-				<td> zoneHiPoint(2) </td>
-				<td> zoneTemp(2) </td>
-				<td> zoneRH(2) </td>
-				<td> zonehvac(2) </td>
-				<td>?</td>
 			</tr>
 			<tr>
-				<td>Zone 3</td>
-				<td> zoneLoPoint(3) </td>
-				<td> zoneHiPoint(3) </td>
-				<td> zoneTemp(3) </td>
-				<td> zoneRH(3) </td>
-				<td> zonehvac(3) </td>
-				<td>?</td>
 			</tr>
 			<tr>
-				<td>Zone 4</td>
-				<td> zoneLoPoint(4) </td>
-				<td> zoneHiPoint(4) </td>
-				<td> zoneTemp(4) </td>
-				<td> zoneRH(4) </td>
-				<td> zonehvac(4) </td>
-				<td>?</td>
 			</tr>
 		</table>
 	</div>
+	<div id = "StatusGlance">
+	</div>
+	<script src= "./dist/jquery-csv.js"></script>
 		<div class="table" id="ahuStatus">
 			<table>
 				<tr>

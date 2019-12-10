@@ -1,18 +1,69 @@
+var counter = 1;
+var day = [],
+zone = [],
+sTime = [],
+eTime = [],
+loPoint = [],
+hiPoint = [];
 //on window load, check if setup.csv exists
 //if setup.csv exists
+function schSelection() {
+  var schedule = $.trim(document.getElementById("selectSch").value);
+  var url = "";
+  switch (schedule) {
+    case "SummerSch":
+      url = "SummerSch.csv";
+      break;
+    case "WinterSch":
+      url = "WinterSch.csv";
+      break;
+    case "VacSch":
+      url = "VacSch.csv";
+      break;
+  }
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "text",
+    success: function(response)
+    {
+      data = $.csv.toArrays(response);
+      displayTable(data);
+    }
+  });
+  function displayTable(data) {
+    var html = "";
+    var row = 0;
+    $.each(data, function( index, row ) {
+    if(index != 0)
+    {
+      console.log(row);
+      html += '<tr>';
+      i = 0;
+			$.each(row, function( index, colData ) {
+				html += '<td>';
+				html += colData;
+        console.log(i + "=" + colData);
+        console.log("index = " + index);
+				html += '</td>';
+        i++
+			});
+      html += '<input id="delete" type="button" value="Delete Rule" onclick="deleteRule(this)">';
+			html += '</tr>';
+      row++;
+		  }
+  });
+  html += '</table>';
+  $('#myTable').append(html);
+  }
+
+}
 //prompt schedule selection
 //see if schedule selection exists. if not, run app
 //check if dampers exist
 //check if zones exist
 
 //if it doesn't show feedback
-var counter = 1;
-var day = [],
-  zone = [],
-  sTime = [],
-  eTime = [],
-  loPoint = [],
-  hiPoint = [];
 function onApply() {
   var errorCheck = 0;
   var table = document.getElementById("myTable");
@@ -171,13 +222,13 @@ function onApply() {
     if (errorCheck == 0) {
       //day number
       var dayNum = 0;
-      if (curmStr == "M") {dayNum += 64;}
-      if (curtStr == "T") {dayNum += 32;}
-      if (curwStr == "W") {dayNum += 16;}
-      if (curthStr == "TR"){dayNum += 8;}
-      if (curfStr == "F") {dayNum += 4;}
-      if (cursatStr == "Sat"){dayNum += 2;}
-      if (cursunStr == "Sun"){dayNum += 1;}
+      if (cursunStr == "Sun"){dayNum += 64;}
+      if (curmStr == "M") {dayNum += 32;}
+      if (curtStr == "T") {dayNum += 16;}
+      if (curwStr == "W") {dayNum += 8;}
+      if (curthStr == "TR"){dayNum += 4;}
+      if (curfStr == "F") {dayNum += 2;}
+      if (cursatStr == "Sat"){dayNum += 1;}
       var zNum = 0;
       if (curz1Str == "Z1") {zNum += 8;}
       if (curz2Str == "Z2") {zNum += 4;}
@@ -264,7 +315,7 @@ function onSubmit() {
   switch (selectSch) {
     case "SummerSch":
       summerSch = scheduleArray.join("");
-      $.post( "scheduling.html", { summerSch } );
+      $.post( "scheduling.php", { summerSch } );
       break;
     case "WinterSch":
       winterSch = scheduleArray.join("");
@@ -367,3 +418,4 @@ function createBinaryString (nMask) {
        nFlag++, sMask += String(nShifted >>> 31), nShifted <<= 1);
   return sMask;
 }
+var selectsch = document.getElementById("selectSch").addEventListener("change", schSelection);

@@ -8,6 +8,7 @@ window.onload = function() {
     {
       data = $.csv.toArrays(response);
       generateHtmlTable(data);
+      console.log(data);
     }
   });
 }
@@ -42,7 +43,8 @@ function generateHtmlTable(data) {
 		});
 		html += '</tbody>';
 		html += '</table>';
-		alert(html);
-		$('#csv-display').append(html);
+		//alert(html);
+		$('#StatusGlance').append(html);
+    console.log(html);
 	  }
 	}
