@@ -6,12 +6,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Smart HVAC System</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<///link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+<//link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="scheduling.js"></script>
-	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+	<script src="dist/jquery-2.2.0.min.js"></script>
+	<script src="dist/bootstrap.min.js"></script>
+	<script src="dist/ajax.js"></script>
+	<link rel="stylesheet" href="dist/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/bootstrap-multiselect.css">
+<//script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<//script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<//script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
 
 	<link rel="stylesheet" href="main.css">
 </head>
@@ -58,7 +64,7 @@
 	<div id="error-container" style="display:none; justify-content:center; background:red;">
 		<h1 style="color: white; margin-top:10px;">There is a time conflict with this rule, please check your rules</h1>
 	</div>
-	<div class="all-container">
+	<div class="all-container" id="all-container">
 		<div class="add_text">
 			<h3>Add Schedule Rule</h4>
 		</div>
@@ -224,7 +230,7 @@
 			</div>
 
 		</div>
-		<div class="submit-container" style="opacity:1;">
+		<div class="submit-container" id="submit-container" style="opacity:0;">
 			<button id="applyRule" onclick="onSubmit()">Submit</button>
 		</div>
 	</div>
@@ -234,7 +240,7 @@
 	<div class="load-container" id="loadCont" style= "display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
 		<h2 id="loadText"></h2>
 	</div>
-	<div class="attempt-container" style="display:none;">
+	<div class="attempt-container" id="attempt-container" style="display:none;">
 		<h2>Saving file failed! Try again?</h2>
 		<button onclick="onSubmit()" id="tryAgain">Try Again</button>
 	</div>

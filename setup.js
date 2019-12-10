@@ -49,14 +49,15 @@ function onSubmit() {
   var d7Select = document.getElementById('d7Select').value;
   var d8Select = document.getElementById('d8Select').value;
 
-  var d1Optional = document.getElementById('d1Optional').value;
-  var d2Optional = document.getElementById('d2Optional').value;
-  var d3Optional = document.getElementById('d3Optional').value;
-  var d4Optional = document.getElementById('d4Optional').value;
-  var d5Optional = document.getElementById('d5Optional').value;
-  var d6Optional = document.getElementById('d6Optional').value;
-  var d7Optional = document.getElementById('d7Optional').value;
-  var d8Optional = document.getElementById('d8Optional').value;
+  //add "- 1 " because software developer wanted the values at 0, 1 , 2 (the html is at 1, 2, 3)
+  var d1Optional = document.getElementById('d1Optional').value - 1;
+  var d2Optional = document.getElementById('d2Optional').value - 1;
+  var d3Optional = document.getElementById('d3Optional').value - 1;
+  var d4Optional = document.getElementById('d4Optional').value - 1;
+  var d5Optional = document.getElementById('d5Optional').value - 1;
+  var d6Optional = document.getElementById('d6Optional').value - 1;
+  var d7Optional = document.getElementById('d7Optional').value - 1;
+  var d8Optional = document.getElementById('d8Optional').value - 1;
 
   var coolingSystem = document.getElementById('coolingSystem').value;
   var anticipatorC = document.getElementById('anticipatorC').value;
@@ -170,13 +171,13 @@ function onSubmit() {
 
 
 function writeMyFile(data) {
-  let header = ["Parameter", "Config \n"];
-  var parameter = ["zone1,", "zone2,", "zone3,", "zone4,", "d1Operation,", "d2Operation,",
-    "d3Operation,", "d4Operation,", "d5Operation,", "d6Operation,", "d7Operation,",
-    "d8Operation,", "d1Z,", "d2Z,", "d3Z,", "d4Z,", "d5Z,", "d6Z,", "d7Z,", "d8Z,",
-    "d1Optional,", "d2Optional,", "d3Optional,", "d4Optional,", "d5Optional,", "d6Optional,",
-    "d7Optional,", "d8Optional,", "sysCool,", "antCool,", "coolRunT,", "coolCycleT,", "sysHeat,",
-    "antHeat,", "heatRunT,", "heatCycleT,", "overTemp,"
+  let header = ["Param", "Config \n"];
+  var parameter = ["z1,", "z2,", "z3,", "z4,", "d1Oper,", "d2Oper,",
+    "d3Oper,", "d4Oper,", "d5Oper,", "d6Oper,", "d7Oper,",
+    "d8Oper,", "d1Z,", "d2Z,", "d3Z,", "d4Z,", "d5Z,", "d6Z,", "d7Z,", "d8Z,",
+    "d1Opt,", "d2Opt,", "d3Opt,", "d4Opt,", "d5Opt,", "d6Opt,",
+    "d7Opt,", "d8Opt,", "cSys,", "cAnt,", "cRunT,", "cCycleT,", "hSys,",
+    "hAnt,", "hRunT,", "hCycleT,", "overTemp,"
   ];
 
   var config = []
@@ -214,7 +215,7 @@ function writeMyFile(data) {
   }
   var dataString = dataArray.join("");
   //write data string to file
-  $.post( "setup.html", { dataString } );
+  $.post( "setup.php", { dataString } );
   //HVAC Configured
   configureMsg();
 }

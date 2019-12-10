@@ -45,7 +45,7 @@ function onApply() {
     var curmStr = $.trim(currentData.day.match("M"));
     var curtStr = $.trim(currentData.day.match("T"));
     var curwStr = $.trim(currentData.day.match("W"));
-    var curthStr = $.trim(currentData.day.match("TH"));
+    var curthStr = $.trim(currentData.day.match("TR"));
     var curfStr = $.trim(currentData.day.match("F"));
     var cursatStr = $.trim(currentData.day.match("Sat"));
     var cursunStr = $.trim(currentData.day.match("Sun"));
@@ -169,8 +169,25 @@ function onApply() {
       }
     }
     if (errorCheck == 0) {
-      window.day.push(currentData.day +",");
-      window.zone.push(currentData.zone + ",");
+      //day number
+      var dayNum = 0;
+      if (curmStr == "M") {dayNum += 64;}
+      if (curtStr == "T") {dayNum += 32;}
+      if (curwStr == "W") {dayNum += 16;}
+      if (curthStr == "TR"){dayNum += 8;}
+      if (curfStr == "F") {dayNum += 4;}
+      if (cursatStr == "Sat"){dayNum += 2;}
+      if (cursunStr == "Sun"){dayNum += 1;}
+      var zNum = 0;
+      if (curz1Str == "Z1") {zNum += 8;}
+      if (curz2Str == "Z2") {zNum += 4;}
+      if (curz3Str == "Z3") {zNum += 2;}
+      if (curz4Str == "Z4") {zNum += 1;}
+
+      // window.day.push(currentData.day +",");
+      // window.zone.push(currentData.zone + ",");
+      window.day.push(dayNum +",");
+      window.zone.push(zNum + ",");
       window.sTime.push(currentData.startTime + ",");
       window.eTime.push(currentData.endTime + ",");
       window.loPoint.push(currentData.loPoint + ",");
@@ -204,10 +221,10 @@ function onApply() {
       $('#selectZ_00').multiselect("deselectAll", false).multiselect("refresh");
       //if submit opacity is 0 and window.counter > 0 <--- FIX THIS
       var subElement = document.getElementById("submit-container");
-      // if (subElement.style.opacity == "0" && window.counter > 0) {
-      //   subElement.style.opacity = "1";
-      // }
-      // else {}
+      if (subElement.style.opacity == "0" && window.counter > 0) {
+        subElement.style.opacity = "1";
+      }
+      else {}
     } else {
       //display error
       onError();
@@ -247,14 +264,14 @@ function onSubmit() {
   switch (selectSch) {
     case "SummerSch":
       summerSch = scheduleArray.join("");
-      $.post( "scheduling.php", { summerSch } );
+      $.post( "scheduling.html", { summerSch } );
       break;
     case "WinterSch":
-      winterSch = scheduleArray.join();
+      winterSch = scheduleArray.join("");
       $.post( "scheduling.html", { winterSch } );
       break;
     case "VacSch":
-      vacSch = scheduleArray.join();
+      vacSch = scheduleArray.join("");
       $.post( "scheduling.html", { vacSch } );
       break;
   }
@@ -272,19 +289,16 @@ function onLoad() {
   var state3 = "Loading...";
   var states = [state1, state2, state3];
   var url;
-  loadDiv = document.getElementById("load-container");
+  loadDiv = document.getElementById("loadCont");
   loadText = document.getElementById("loadText");
   allDiv = document.getElementById("all-container");
   allDiv.style.display = "none";
   //please wait (8 seconds)
   loadDiv.style.display = "flex";
-  for (var i = 0; i < 3; i++) {
-    for (var i = 0; i < states.length; i++) {
-      setTimeout(function() {
-        loadText.innerHTML = states[i];
-      }, 1000);
-    }
-  }
+  loadText.innerHTML = "please wait";
+  // setTimeout(function(){
+  //   loadText.innerHTML = "checking.."
+  // }, 8000)
   var selectSch = document.getElementById("selectSch").value;
   switch (selectSch){
     case "SummerSch":
@@ -316,7 +330,7 @@ function writeSuccess(){
   setupDiv = document.getElementById("all-container");
   setupDiv.style.display = "none";
   //show success msg
-  wSuc = document.getElementById('writeSuccess');
+  wSuc = document.getElementById("loadText");
   switch (selectSch)
   {
     case "SummerSch":
@@ -347,5 +361,9 @@ function onError() {
   setTimeout(function() {
     errorEl.style.display = "none";
   }, 3000);
-
+}
+function createBinaryString (nMask) {
+  for (var nFlag = 0, nShifted = nMask, sMask = ""; nFlag < 32;
+       nFlag++, sMask += String(nShifted >>> 31), nShifted <<= 1);
+  return sMask;
 }
