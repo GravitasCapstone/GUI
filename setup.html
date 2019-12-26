@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="main.css">
 	<script src="setup.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script src="dist/jquery.js"></script>
+	<script src="dist/jquery-2.2.0.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -49,7 +49,7 @@
           <option value="default">Required</option>
           <option value="1">Enabled</option>
           <option value="0">Disabled</option>
-        </select> </li?
+        </select> </li>
       </div>
       <div class="z2-container">
 				<li><p id="zone2" style="font-size:1em;">Zone 2</p>
@@ -97,6 +97,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d1Optional" name="d1Optional" id="d1Optional">
 					<option value="default">Optional</option>
@@ -122,6 +123,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d2Optional" name="d2Optional" id="d2Optional">
 					<option value="default">Optional</option>
@@ -147,6 +149,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d3Optional" name="d3Optional" id="d3Optional">
 					<option value="default">Optional</option>
@@ -172,6 +175,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d4Optional" name="d4Optional" id="d4Optional">
 					<option value="default">Optional</option>
@@ -197,6 +201,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d5Optional" name="d5Optional" id="d5Optional">
 					<option value="default">Optional</option>
@@ -222,6 +227,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d6Optional" name="d6Optional" id="d6Optional">
 					<option value="default">Optional</option>
@@ -247,6 +253,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d7Optional" name="d7Optional" id="d7Optional">
 					<option value="default">Optional</option>
@@ -272,6 +279,7 @@
           <option value="2">Zone 2</option>
           <option value="3">Zone 3</option>
           <option value="4">Zone 4</option>
+					<option value="0">Disabled</option>
         </select>
         <select class="d8Optional" name="d8Optional" id="d8Optional">
 					<option value="default">Optional</option>
@@ -291,9 +299,9 @@
 				<li><p id="coolingSystemTXT" style="font-size:1em;">System</p>
       <select class="coolingSystem" name="coolingSystem" id="coolingSystem">
         <option value="default">Required</option>
-        <option value="1">Single-Stage</option>
-        <option value="2">Two-Stage</option>
-        <option value="0">Disabled</option>
+				<option value="0">Single Fan Power (H)</option>
+        <option value="1">Double Fan Power (H/L)</option>
+        <option value="2">Triple Fan Power (H/M/L)</option>
       </select>
 		</li>
     </ul>
@@ -334,9 +342,9 @@
 				<li><p id="heatingSystemTXT" style="font-size:1em;">System</p>
       <select class="heatingSystem" name="heatingSystem" id="heatingSystem">
         <option value="default">Required</option>
-        <option value="1">Single-Stage</option>
-        <option value="2">Two-Stage</option>
-        <option value="0">Disabled</option>
+				<option value="0">Single Fan Power (H)</option>
+        <option value="1">Double Fan Power (H/L)</option>
+        <option value="2">Triple Fan Power (H/M/L)</option>
       </select>
 		</li>
     </ul>
@@ -385,6 +393,10 @@
 			<button onclick="onSubmit()">Submit</button>
 		</div>
   </div>
+	<div class="attempt-container" id="attempt-container" style="display:none;">
+		<h2>Saving file failed! Try again?</h2>
+		<button onclick="onSubmit()" id="tryAgain">Try Again</button>
+	</div>
 	<div class="confim-container" id="confirmCont" style= "border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
 		<h2 id="msgConfirm" style="display:none; line-height: .5em;">Smart HVAC System Configured!</h2>
 	</div>

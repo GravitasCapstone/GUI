@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Zones</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="/dist/Chart.min.js"></script>
+	<script src="dist/d3.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<header>
+			<a href="index.html"><img src="gravitas2.gif" alt="gravitas logo" class="logo"></a>
+
+				<nav>
+					<!--
+					<a href="#" class="hide-desktop">
+						<img src="images/GRAVITAS.svg" alt="toggle menu" class="menu" id="menu">
+					</a>
+					--->
+					<ul>
+					<!--
+						class="show-desktop hide-mobile" id="nav">
+						<li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="exit button">
+						</li>
+					--->
+						<li><a href="index.html">home</a></li>
+						<li><a href="#">about</a></li>
+						<li><a href="#">menu</a></li>
+					</ul>
+				</nav>
+		</header>
+		<section>
+			<h1>Diagnostics</h1>
+			<p class="subhead">This page displays visualized data of zones over time</p>
+		</section>
+	</div>
+	<div class="container">
+		<div class="chart-container" id="chart-container">
+			<ul id="list">
+				<canvas id="zoneGraph" height="450" width="900"></canvas>
+			</ul>
+		</div>
+			<div class="selector-container">
+				<ul>
+					<select name="zoneSelect" id="zoneSelect">
+					  <option value="esu1">ESU 1 T/RH%</option>
+					  <option value="esu2">ESU 2 T/RH%</option>
+					  <option value="esu1P">ESU 1 Pressure</option>
+					  <option value="esu2P">ESU 2 Pressure</option>
+            <option value="splitT/RH">Split T/RH%</option>
+            <option value="splitP">Split Pressure</option>
+					</select>
+					<select name="zonePeriod" id="zonePeriod">
+						<option value="oneHour">Last Hour</option>
+						<option value="sixHours">Last 6 Hours</option>
+						<option value="twelveHours">Last 12 Hours</option>
+						<option value="oneDay">Last 24 Hours</option>
+					</select>
+				</ul>
+
+			</div>
+
+			<script src="zones.js"></script>
+	</div>
+</body>
+</html>

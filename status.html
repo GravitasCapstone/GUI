@@ -30,14 +30,11 @@
 			line-height: 10px;
 		}
 		td, th {
-			width: 33.3%;
+			width: auto;
 		}
 		label {
 			margin-bottom: 10px;
 		}
-</style>
-
-
 </style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="main.css">
@@ -46,7 +43,6 @@
 	<div class="container">
 		<header>
 			<a href="index.html"><img src="gravitas2.gif" alt="gravitas logo" class="logo"></a>
-
 			<nav>
 				<ul>
 					<li><a href="index.html">home</a></li>
@@ -65,70 +61,20 @@
 	</div>
 
 	<div class="container">
-		<div class="table" id ="FanStatus">
-			<table>
-				<tr><td>Fan:</td><td>fanstatus</td><td>hvacstatus</td></tr>
+		<div class="table">
+			<table id="FanStatus">
+				<tr><td>HVAC:</td>
+					<td></td>
+					<td></td>
+				</tr>
 			</table>
 		</div>
-		<div class="table" id="StatusGlance2">
-		<table>
-			<tr>
-				<td>Area</td>
-				<td>Low Setpoint</td>
-				<td>High Setpoint</td>
-				<td>Temperature</td>
-				<td>Relative Humidity %</td>
-				<td>Status</td>
-				<td>Last Update</td>
-			</tr>
-			<td>DUNNO IF THIS WORKS</td>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-		</table>
-	</div>
 	<div id = "StatusGlance">
 	</div>
-	<script src= "./dist/jquery-csv.js"></script>
-		<div class="table" id="ahuStatus">
-			<table>
-				<tr>
-					<td>AHU Sensors</td>
-					<td>Temperature</td>
-					<td>RH %</td>
-					<td>Pressure</td>
-					<td>Last Update</td>
-				</tr>
-				<tr>
-					<td>Return</td>
-					<td> esuT(1) </td>
-					<td> esuRH(1) </td>
-					<td> esuP(1) </td>
-					<td>?</td>
-				</tr>
-				<tr>
-					<td>Supply</td>
-					<td> esuT(2) </td>
-					<td> esuRH(2) </td>
-					<td> esuP(2) </td>
-					<td>?</td>
-				</tr>
-				<tr>
-					<td>Split</td>
-					<td> splitT </td>
-					<td> splitRH </td>
-					<td> splitP </td>
-					<td>?</td>
-				</tr>
-			</table>
+		<div id="ahuStatus">
 		</div>
-		<div class="table" id="damperStatus">
-			<table>
+		<div class="table" id="damperStatus_div">
+			<table id="damperStatus">
 			<tr>
 				<td>Dampers</td>
 				<td>Damper 1</td>
@@ -142,36 +88,36 @@
 			</tr>
 			<tr>
 				<td>Location</td>
-				<td> damperZ(1) </td>
-				<td> damperZ(2) </td>
-				<td> damperZ(3) </td>
-				<td> damperZ(4) </td>
-				<td> damperZ(5) </td>
-				<td> damperZ(6) </td>
-				<td> damperZ(7) </td>
-				<td> damperZ(8) </td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Operation</td>
-				<td> damperOp(1) </td>
-				<td> damperOp(2) </td>
-				<td> damperOp(3) </td>
-				<td> damperOp(4) </td>
-				<td> damperOp(5) </td>
-				<td> damperOp(6) </td>
-				<td> damperOp(7) </td>
-				<td> damperOp(8) </td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Optional</td>
-				<td> damperOpt(1) </td>
-				<td> damperOpt(2) </td>
-				<td> damperOpt(3) </td>
-				<td> damperOpt(4) </td>
-				<td> damperOpt(5) </td>
-				<td> damperOpt(6) </td>
-				<td> damperOpt(7) </td>
-				<td> damperOpt(8) </td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 		</table>
 		</div>
@@ -186,5 +132,6 @@
 	</footer>
 
 
+	<script src= "./dist/jquery-csv.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 //check if setup.csv exists
 window.onload = function() {
   $.ajax({
-      url:'setup.csv',
+      url:'config.csv',
       type:'GET',
       error: function()
       {
@@ -216,8 +216,31 @@ function writeMyFile(data) {
   var dataString = dataArray.join("");
   //write data string to file
   $.post( "setup.php", { dataString } );
-  //HVAC Configured
-  configureMsg();
+  // please wait (on Load)
+  onLoad();
+  setTimeout(function(){
+      checkFile();
+    }, 5000)
+  function writeFailure(){
+    var element = document.getElementById("attempt-container");
+    element.style.display = "flex";
+  }
+
+  function checkFile() {
+    $.ajax({
+        url: "config.csv",
+        type:'GET',
+        error: function(){
+            //file not exists
+            //try again
+            writeFailure()
+        },
+        success: function(){
+            //file exists
+            configureMsg();
+        }
+    });
+  }
 }
 function configureMsg(){
   //remove setup-container
@@ -225,10 +248,19 @@ function configureMsg(){
   setupDiv.style.display = "none";
   //show success msg
   msgConfirm = document.getElementById('msgConfirm');
+  msgConfirm.innerHTML = "Smart HVAC System Configured!";
   msgConfirm.style.display ="flex";
   msgConfirm.style.justifyContent ="center";
 }
+function onLoad(){
+  setupDiv = document.getElementById("setupDiv");
+  setupDiv.style.display = "none";
+  msgConfirm = document.getElementById('msgConfirm');
+  msgConfirm.innerHTML = "Please Wait.. (5 seconds)";
+  msgConfirm.style.display ="flex";
+  msgConfirm.style.justifyContent ="center";
 
+}
 function onError(data, errCode) {
   var zone1 = document.getElementById("zone1");
   var zone1 = document.getElementById("zone1");
