@@ -5,19 +5,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Smart HVAC System</title>
-
-<///link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-<//link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="dist/jquery-2.2.0.min.js"></script>
 	<script src="dist/bootstrap.min.js"></script>
 	<script src="dist/ajax.js"></script>
 	<link rel="stylesheet" href="dist/bootstrap.min.css">
 	<link rel="stylesheet" href="dist/bootstrap-multiselect.css">
-<//script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<//script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<//script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-
-
 	<link rel="stylesheet" href="main.css">
 </head>
 
@@ -27,21 +19,14 @@
 			<a href="index.html"><img src="gravitas2.gif" alt="gravitas logo" class="logo"></a>
 
 			<nav>
-				<!--
-				<a href="#" class="hide-desktop">
-					<img src="images/GRAVITAS.svg" alt="toggle menu" class="menu" id="menu">
-				</a>
-				--->
+
 				<ul>
-					<!--
-					class="show-desktop hide-mobile" id="nav">
-					<li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="exit button">
-					</li>
-				--->
+					
 					<li><a href="index.html">home</a></li>
 					<li><a href="#">about</a></li>
 					<li><a href="./index.html">menu</a></li>
 				</ul>
+				
 			</nav>
 		</header>
 
@@ -87,7 +72,7 @@
 						</form>
 					</li>
 					<script type="text/javascript">
-						$(function() {
+						$(function () {
 
 							$('#selectDay_00').multiselect({
 								includeSelectAllOption: true
@@ -110,7 +95,7 @@
 						</div>
 					</li>
 					<script type="text/javascript">
-						$(function() {
+						$(function () {
 							$('#selectZ_00').multiselect({
 								includeSelectAllOption: true
 							});
@@ -153,7 +138,8 @@
 						for (var i = 0; tt < 24 * 60; i++) {
 							var hh = Math.floor(tt / 60); // getting hours of day in 0-24 format
 							var mm = (tt % 60); // getting minutes of the hour in 0-55 format
-							times[i] = ("0" + (hh % 24)).slice(-2) + ':' + ("0" + mm).slice(-2); // pushing data in array in [00:00 - 12:00 AM/PM format]
+							times[i] = ("0" + (hh % 24)).slice(-2) + ':' + ("0" + mm).slice(-
+								2); // pushing data in array in [00:00 - 12:00 AM/PM format]
 							tt = tt + x;
 							let sOpt = document.createElement('option');
 							let eOpt = document.createElement('option');
@@ -233,10 +219,12 @@
 			<button id="applyRule" onclick="onSubmit()">Submit</button>
 		</div>
 	</div>
-	<div class="confim-container" id="confirmCont" style= "display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
+	<div class="confim-container" id="confirmCont"
+		style="display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
 		<h2 id="writeSuccess" style="display:none; line-height: .5em;"></h2>
 	</div>
-	<div class="load-container" id="loadCont" style= "display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
+	<div class="load-container" id="loadCont"
+		style="display: none; border-style:solid; border-color:orange; background:rgba(249,234,137,0.3); margin-right:auto; margin-left:auto;">
 		<h2 id="loadText"></h2>
 	</div>
 	<div class="attempt-container" id="attempt-container" style="display:none;">
