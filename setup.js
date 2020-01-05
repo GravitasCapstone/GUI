@@ -218,7 +218,7 @@ function writeMyFile(data) {
   var url = "setup.php";
   var xhr = new XMLHttpRequest(); 
   xhr.open('POST', url);
-  xhr.setRequestHeader('Content-Type', 'text/plain');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onload = function() {
       // if (xhr.status === 200 && xhr.responseText !== dataString) {
       //     alert('Something went wrong. dataString is now ' + xhr.responseText);
