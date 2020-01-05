@@ -169,58 +169,67 @@ function updateChart() {
 }
 
 function loadData() {
-  let url = 'zoneData.csv';
+  let url = 'Demo Datalog.csv';
   var zoneSelection = document.getElementById('zoneSelect').value;
-  $.get(url, function (csv) {
-    var flotData = $.csv.toObjects(csv, {
-      onParseValue: $.csv.hooks.castToScalar
-    });
-    var z1Data = flotData.map(function (d) {
-      return {
-        time: d.Time,
-        temp: d.zone1T,
-        rh: d.zone1RH
-      };
-    });
-    var z2Data = flotData.map(function (d) {
-      return {
-        time: d.Time,
-        temp: d.zone2T,
-        rh: d.zone2RH
-      };
-    });
-    var z3Data = flotData.map(function (d) {
-      return {
-        time: d.Time,
-        temp: d.zone3T,
-        rh: d.zone3RH
-      };
-    });
-    var z4Data = flotData.map(function (d) {
-      return {
-        time: d.Time,
-        temp: d.zone4T,
-        rh: d.zone4RH
-      };
-    });
-    switch (zoneSelection) {
-      case "zsu1":
-        makeChart(1, z1Data);
-        break;
-      case "zsu2":
-        makeChart(2, z2Data);
-        break;
-      case "zsu3":
-        makeChart(3, z3Data);
-        break;
-      case "zsu4":
-        makeChart(4, z4Data);
-        break;
-      default:
-        makeChart(0, null);
-        break;
+  //getting rid of ajax requests for native XMLHTTPRequest
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var flotData = $.csv.toObjects(xhr.responseText, {
+        onParseValue: $.csv.hooks.castToScalar
+      });
+      var z1Data = flotData.map(function (d) {
+        return {
+          time: d.Time,
+          temp: d.zone1T,
+          rh: d.zone1RH
+        };
+      });
+      var z2Data = flotData.map(function (d) {
+        return {
+          time: d.Time,
+          temp: d.zone2T,
+          rh: d.zone2RH
+        };
+      });
+      var z3Data = flotData.map(function (d) {
+        return {
+          time: d.Time,
+          temp: d.zone3T,
+          rh: d.zone3RH
+        };
+      });
+      var z4Data = flotData.map(function (d) {
+        return {
+          time: d.Time,
+          temp: d.zone4T,
+          rh: d.zone4RH
+        };
+      });
+      switch (zoneSelection) {
+        case "zsu1":
+          makeChart(1, z1Data);
+          break;
+        case "zsu2":
+          makeChart(2, z2Data);
+          break;
+        case "zsu3":
+          makeChart(3, z3Data);
+          break;
+        case "zsu4":
+          makeChart(4, z4Data);
+          break;
+        default:
+          makeChart(0, null);
+          break;
+      }
     }
-  });
+    else {
+        alert('Request failed.  Returned status of ' + xhr.status);
+    }
+  };
+  xhr.send();
 }
 document.getElementById("zoneSelect").addEventListener("change", updateChart);
 document.getElementById("zonePeriod").addEventListener("change", updateChart);

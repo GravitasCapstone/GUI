@@ -177,8 +177,7 @@ function writeMyFile(data) {
     "d8Oper,", "d1Z,", "d2Z,", "d3Z,", "d4Z,", "d5Z,", "d6Z,", "d7Z,", "d8Z,",
     "d1Opt,", "d2Opt,", "d3Opt,", "d4Opt,", "d5Opt,", "d6Opt,",
     "d7Opt,", "d8Opt,", "cSys,", "cAnt,", "cRunT,", "cCycleT,", "hSys,",
-    "hAnt,", "hRunT,", "hCycleT,", "overTemp,"
-  ];
+    "hAnt,", "hRunT,", "hCycleT,", "overTemp,"];
 
   var config = []
   var i;
@@ -215,32 +214,48 @@ function writeMyFile(data) {
   }
   var dataString = dataArray.join("");
   //write data string to file
-  $.post( "setup.php", { dataString } );
+  //$.post( "setup.php", { dataString } ); <--- this requires jQuery
+  var url = "setup.php";
+  var xhr = new XMLHttpRequest(); 
+  xhr.open('POST', url);
+  xhr.setRequestHeader('Content-Type', 'text/plain');
+  xhr.onload = function() {
+      // if (xhr.status === 200 && xhr.responseText !== dataString) {
+      //     alert('Something went wrong. dataString is now ' + xhr.responseText);
+      // }
+      if (xhr.status !== 200) {
+          alert('Request failed.  Returned status of ' + xhr.status);
+          writeFailure();
+      }
+      else {
+        configureMsg();
+      }
+  };
+  xhr.send(encodeURI('dataString=' + dataString));
   // please wait (on Load)
-  onLoad();
-  setTimeout(function(){
-      checkFile();
-    }, 5000)
-  function writeFailure(){
-    var element = document.getElementById("attempt-container");
-    element.style.display = "flex";
-  }
-
-  function checkFile() {
-    $.ajax({
-        url: "config.csv",
-        type:'GET',
-        error: function(){
-            //file not exists
-            //try again
-            writeFailure()
-        },
-        success: function(){
-            //file exists
-            configureMsg();
-        }
-    });
-  }
+  //onLoad();
+  // setTimeout(function(){
+  //     getFile();
+  //   }, 3000)
+}
+function getFile() {
+  $.ajax({
+    url: "config.csv",
+    type:'GET',
+    error: function(){
+      //file not exists
+      //try again
+      writeFailure();
+    },
+    success: function(){
+      //file exists
+      configureMsg();
+    }
+  });
+}
+function writeFailure(){
+  var element = document.getElementById("attempt-container");
+  element.style.display = "flex";
 }
 function configureMsg(){
   //remove setup-container
